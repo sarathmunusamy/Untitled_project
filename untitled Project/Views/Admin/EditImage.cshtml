@@ -1,0 +1,107 @@
+﻿@model untitled_Project.productImage
+
+@{
+    ViewBag.Title = "EditImage";
+}
+<style>
+    #addimage {
+        background-color: black;
+        opacity: 0.2;
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
+
+<script>
+    $(document).ready(function(){
+    $('#addimage').click(function () {
+        
+
+   
+        var imageId = this.className
+        alert(imageId);
+        $.ajax({
+            type: 'GET',
+            url: '/Admin/AddImage',
+            data: { id: imageId },
+            cache: false,
+            success: function (result) {
+
+            }
+        });
+    });
+
+
+
+</script>
+<div id="imageContainer" style="margin-top:10%">
+    <div id="mainImageContainer">
+
+        <div id="imageList">
+            <ul>
+
+                @{
+                    if( Model.mainImg != null )
+                    {
+                        @addImage( Model.mainImg, "mainImg" );
+                    }
+
+                    if( Model.ima1 != null )
+                    {
+                        @addImage( Model.ima1, "ima1" );
+                    }
+                    else
+                    {
+
+                        <li><div id="addimage" class="ima1" > </div></li>
+                    }
+                    if( Model.img2 != null )
+                    {
+                        @addImage( Model.img2, "ima2" );
+                    }
+                    else
+                    {
+
+                        <li><div id="addimage" class="img2" > </div></li>
+                    }
+                    if( Model.img3 != null )
+                    {
+                        @addImage( Model.img3, "ima3" );
+                    }
+                    else
+                    {
+                         
+                        <li><div id="addimage" class="img3" > </div></li>
+                    }
+                    if( Model.img4 != null )
+                    {
+                        @addImage( Model.img4, "ima4" );
+                    }
+                    else
+                    {
+
+                        <li><div id="addimage" class="img4" > </div></li>
+                    }
+
+
+                }
+            </ul>
+        </div>
+    </div>
+
+
+
+
+
+</div>
+@helper addImage( byte[] src, string name )
+{
+    var base64 = Convert.ToBase64String( src );
+    var imgSrc = String.Format( "data:image/gif;base64,{0}", base64 );
+
+    <script>
+
+        $("#imageList ul").append('<li id=@name class="@name"><img src=@imgSrc>  </li>');
+    </script>
+}

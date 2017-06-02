@@ -1,0 +1,95 @@
+﻿@model untitled_Project.Models.ProductDetailsWithImages
+@using untitled_Project
+@using System.Reflection
+@{
+    ViewBag.Title = "ProductDetail";
+    
+}
+
+
+@{
+    productImage img = new productImage();
+    productDetail details = new productDetail();
+    img = Model.productimages;
+    details = Model.productdetails;
+}
+<script>
+
+    $(document).ready(function () {
+
+        $(".imgitem").click(function () {
+
+            var id = $(this).attr('id');
+            var newSrc = ($('#' + id + ' img').attr('src'));
+
+            $('#imageList li img ').css('border-style', 'double');
+            $("#previewImage").attr('src', newSrc);
+
+            $('#' + id + ' img').css('border-style', 'solid');
+         
+        });
+
+    });
+</script>
+<div id="DetailView"  style=" margin-top: 10%">
+    <div id="imageList">
+        <ul>
+
+
+
+            @{
+                if( img.mainImg != null )
+                {
+                    @addImage( img.mainImg, "mainImg" );
+                }
+                if( img.ima1 != null )
+                {
+                    @addImage( img.ima1, "ima1" );
+                }
+                if( img.img2 != null )
+                {
+                    @addImage( img.img2, "ima1" );
+                }
+                if( img.img3 != null )
+                {
+                    @addImage( img.img3, "ima1" );
+                }
+                if( img.img4 != null )
+                {
+                    @addImage( img.img4, "ima1" );
+                }
+
+
+            }
+
+        </ul>
+    </div>
+    <div id="previewImageSection">
+        <img id="previewImage" src="" height="100%" width="100%" />
+    </div>
+
+
+    <div id="details">
+
+        <b>Name:  </b>@Model.productdetails.name
+        <b>Size: </b>@Model.productdetails.size<br />
+        <b>Color: </b>@Model.productdetails.color<br />
+        <b>Stock: </b> @Model.productdetails.stock<br />
+        <b>Product Description: </b> @Model.productdetails.productDescription<br />
+        <b>Price: </b><h style="text-decoration-line:line-through">@Model.productdetails.marketPrice</h> &nbsp;@Model.productdetails.price
+
+    </div>
+
+
+    @helper addImage( byte[] src, string name )
+{
+    var base64 = Convert.ToBase64String( src );
+    var imgSrc = String.Format( "data:image/gif;base64,{0}", base64 );
+
+    <script>
+
+        $("#imageList ul").append('<li id=@name class="imgitem"><img src=@imgSrc>  </li>');
+    </script>
+}
+
+</div>

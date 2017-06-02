@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div id="loginArea" style="margin-top: 10%;margin-left:20%;">
+
+    @if( ViewData[ "errormessage" ] == "yes" )
+    {
+        <p style="color:red;text-decoration:double">Enter Correct Credential</p>
+
+    }
+    @using( Html.BeginForm( "Index", "Admin", FormMethod.Post ) )
+    {
+        <div>
+
+
+            UserName: <input type="text" name="uname" id="uname" /><br />
+            Password: <input type="password" name="password" id="paswrd" /><br />
+            <input type="submit" value="Submit" />
+        </div>
+
+    }
+
+</div>

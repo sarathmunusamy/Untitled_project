@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "ProductDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@model 
+           @using System.Reflection;
+
+
+<h2>ProductDetail</h2>
+@{
+    
+    
+    @*var base64 = Convert.ToBase64String( Model.productImage.mainImg );
+    var imgSrc = String.Format( "data:image/gif;base64,{0}", base64 );
+    <div id="mainImage"> <img src='@imgSrc' style="max-width:100px; max-height:100px;" /></div>*@
+
+
+    @*untitled_Project.productImage images = new untitled_Project.productImage();
+    images= @Model.pi;
+    PropertyInfo[] imagesProps = typeof( images ).GetProperties();
+    foreach( PropertyInfo property in imagesProps )
+    {
+        var name=property.Name;
+        property.GetValue( images,null);
+    }*@
+    
+
+    
+    <body onload="onloadfunction()">
+
+        <div id="imageList">
+            <ul id="imageListUl">
+                
+                <li id="mainImg">
+                
+                    @foreach( var images in (dynamic) Model.pi ) { 
+                    
+                    }
+
+                </li>
+            </ul>
+        </div>
+
+
+        <div id="previewImageSection">
+            <img id="previewImage" src="" height="100%" width="100%" />
+        </div>
+
+
+        <div id="details">
+            Name: name1<br />
+            size: size 1
+        </div>
+  
+    </body>
+}

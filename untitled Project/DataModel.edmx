@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="masterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminLogin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="20" />
+          <Property Name="paswrd" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="productDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" />
+          <Property Name="price" Type="int" />
+          <Property Name="marketPrice" Type="int" />
+          <Property Name="size" Type="int" />
+          <Property Name="color" Type="varchar" MaxLength="20" />
+          <Property Name="stock" Type="int" />
+          <Property Name="maintag" Type="varchar" MaxLength="50" />
+          <Property Name="tag1" Type="varchar" MaxLength="50" />
+          <Property Name="tag2" Type="varchar" MaxLength="50" />
+          <Property Name="tag3" Type="varchar" MaxLength="50" />
+          <Property Name="tag4" Type="varchar" MaxLength="50" />
+          <Property Name="tag5" Type="varchar" MaxLength="50" />
+          <Property Name="tag6" Type="varchar" MaxLength="50" />
+          <Property Name="tag7" Type="varchar" MaxLength="50" />
+          <Property Name="productDescription" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.dbo.productImages' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="productImages">
+          <Key>
+            <PropertyRef Name="pID" />
+          </Key>
+          <Property Name="pID" Type="int" Nullable="false" />
+          <Property Name="mainImg" Type="varbinary(max)" />
+          <Property Name="ima1" Type="varbinary(max)" />
+          <Property Name="img2" Type="varbinary(max)" />
+          <Property Name="img3" Type="varbinary(max)" />
+          <Property Name="img4" Type="varbinary(max)" />
+          <Property Name="img5" Type="varbinary(max)" />
+        </EntityType>
+        <Function Name="CredentialCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetMainImages" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ValidateLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="masterModelStoreContainer">
+          <EntitySet Name="AdminLogin" EntityType="Self.AdminLogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="productDetail" EntityType="Self.productDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="productImages" EntityType="Self.productImages" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[productImages].[pID] AS [pID], 
+[productImages].[mainImg] AS [mainImg], 
+[productImages].[ima1] AS [ima1], 
+[productImages].[img2] AS [img2], 
+[productImages].[img3] AS [img3], 
+[productImages].[img4] AS [img4], 
+[productImages].[img5] AS [img5]
+FROM [dbo].[productImages] AS [productImages]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="masterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AdminLogin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="paswrd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="productDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="Int32" />
+          <Property Name="marketPrice" Type="Int32" />
+          <Property Name="size" Type="Int32" />
+          <Property Name="color" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="stock" Type="Int32" />
+          <Property Name="maintag" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tag1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tag2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tag3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tag4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tag5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tag6" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tag7" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="productDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="productImage">
+          <Key>
+            <PropertyRef Name="pID" />
+          </Key>
+          <Property Name="pID" Type="Int32" Nullable="false" />
+          <Property Name="mainImg" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ima1" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="img2" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="img3" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="img4" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="img5" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityContainer Name="masterEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdminLogins" EntityType="Self.AdminLogin" />
+          <EntitySet Name="productDetails" EntityType="Self.productDetail" />
+          <EntitySet Name="productImages" EntityType="Self.productImage" />
+          <FunctionImport Name="CredentialCheck" ReturnType="Collection(Int32)">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetMainImage" EntitySet="productImages" ReturnType="Collection(masterModel.productImage)" />
+          <FunctionImport Name="ValidateLogin" ReturnType="Collection(Int32)">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetMainImages_Result">
+          <Property Type="Int32" Name="pID" Nullable="false" />
+          <Property Type="Binary" Name="mainImg" Nullable="true" />
+          <Property Type="Binary" Name="ima1" Nullable="true" />
+          <Property Type="Binary" Name="img2" Nullable="true" />
+          <Property Type="Binary" Name="img3" Nullable="true" />
+          <Property Type="Binary" Name="img4" Nullable="true" />
+          <Property Type="Binary" Name="img5" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="masterModelStoreContainer" CdmEntityContainer="masterEntities">
+          <EntitySetMapping Name="AdminLogins">
+            <EntityTypeMapping TypeName="masterModel.AdminLogin">
+              <MappingFragment StoreEntitySet="AdminLogin">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="paswrd" ColumnName="paswrd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productDetails">
+            <EntityTypeMapping TypeName="masterModel.productDetail">
+              <MappingFragment StoreEntitySet="productDetail">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="marketPrice" ColumnName="marketPrice" />
+                <ScalarProperty Name="size" ColumnName="size" />
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="stock" ColumnName="stock" />
+                <ScalarProperty Name="maintag" ColumnName="maintag" />
+                <ScalarProperty Name="tag1" ColumnName="tag1" />
+                <ScalarProperty Name="tag2" ColumnName="tag2" />
+                <ScalarProperty Name="tag3" ColumnName="tag3" />
+                <ScalarProperty Name="tag4" ColumnName="tag4" />
+                <ScalarProperty Name="tag5" ColumnName="tag5" />
+                <ScalarProperty Name="tag6" ColumnName="tag6" />
+                <ScalarProperty Name="tag7" ColumnName="tag7" />
+                <ScalarProperty Name="productDescription" ColumnName="productDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productImages">
+            <EntityTypeMapping TypeName="masterModel.productImage">
+              <MappingFragment StoreEntitySet="productImages">
+                <ScalarProperty Name="pID" ColumnName="pID" />
+                <ScalarProperty Name="mainImg" ColumnName="mainImg" />
+                <ScalarProperty Name="ima1" ColumnName="ima1" />
+                <ScalarProperty Name="img2" ColumnName="img2" />
+                <ScalarProperty Name="img3" ColumnName="img3" />
+                <ScalarProperty Name="img4" ColumnName="img4" />
+                <ScalarProperty Name="img5" ColumnName="img5" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CredentialCheck" FunctionName="masterModel.Store.CredentialCheck" />
+          <FunctionImportMapping FunctionImportName="GetMainImage" FunctionName="masterModel.Store.GetMainImages" />
+          <FunctionImportMapping FunctionImportName="ValidateLogin" FunctionName="masterModel.Store.ValidateLogin" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

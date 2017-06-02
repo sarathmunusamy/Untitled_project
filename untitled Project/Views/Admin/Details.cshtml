@@ -1,0 +1,120 @@
+﻿@model untitled_Project.productDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>productDetail</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.price)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.price)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.marketPrice)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.marketPrice)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.size)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.size)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.color)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.color)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.stock)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.stock)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.maintag)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.maintag)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.tag1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tag1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.tag2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tag2)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.tag3)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tag3)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.tag4)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tag4)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.tag5)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tag5)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.tag6)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tag6)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.tag7)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tag7)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.productDescription)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.productDescription)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

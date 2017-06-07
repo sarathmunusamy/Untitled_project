@@ -1,8 +1,10 @@
-﻿@model untitled_Project.productImage
-
-@{
-    ViewBag.Title = "EditImage";
+﻿@{
+    ViewBag.Title = "AddNewImage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@model untitled_Project.productImage
+
+
 <style>
     .addimage {
         background-color: black;
@@ -47,6 +49,7 @@
 
             img_id = this.id;
             var productID = '@ViewBag.id';
+            alert(@ViewBag.id);
 
             $("#popup").css("display", "block");
             $('#selectedImageId').attr('value', img_id);
@@ -56,7 +59,7 @@
         });
 
 
-            
+
     });
 
 </script>
@@ -70,6 +73,11 @@
                     if( Model.mainImg != null )
                     {
                         @addImage( Model.mainImg, "mainImg" );
+                    }
+                    else
+                    {
+
+                        <li><div class="addimage" id="mainImg"> </div></li>
                     }
 
                     if( Model.ima1 != null )
@@ -126,18 +134,18 @@
 
     <h1>Upload image here </h1>
 
-    @using( Html.BeginForm( "AddImage", "Admin",new {}, FormMethod.Post, new { enctype = "multipart/form-data" } ) )
+    @using( Html.BeginForm( "AddNewImage", "Admin", new { }, FormMethod.Post, new { enctype = "multipart/form-data" } ) )
     {
-     <input type="file" id="imageUpload"  name="postedFile" />
-     <input type="submit" class="btn-info"  id="btnUpload" value="Upload" />
-     <input type="hidden" vaule="" id="selectedImageId" name="imageId"/>
-    <input type="hidden" vaule="" id="productId" name="productId" />
+        <input type="file" id="imageUpload" name="postedFile" />
+        <input type="submit" class="btn-info" id="btnUpload" value="Upload" />
+        <input type="hidden" vaule="" id="selectedImageId" name="imageId" />
+        <input type="hidden" vaule="" id="productId" name="productId" />
 
-    <button class="btn-danger" id="close_popup">Close</button>
+        <button class="btn-danger" id="close_popup">Close</button>
     }
 
 
- 
+
 </div>
 
 @helper addImage( byte[] src, string name )
@@ -150,3 +158,5 @@
         $("#imageList ul").append('<li id=@name class="@name"><img src=@imgSrc>  </li>');
     </script>
 }
+
+

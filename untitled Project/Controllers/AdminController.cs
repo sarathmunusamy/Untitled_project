@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,6 +14,7 @@ namespace untitled_Project.Controllers
 	{
 		private masterEntities db = new masterEntities();
 
+		public int productID;
 		//
 		// GET: /Admin/
 
@@ -76,11 +78,31 @@ namespace untitled_Project.Controllers
 
 			ProductImage = db.GetMainImage().ToList<productImage>().Find( x => x.pID == id );
 
+			productID = id;
+			ViewBag.id = id;
 
 			return View( ProductImage );
 		}
 
-		public ActionResult AddImage(int id) {
+		[HttpPost]
+		public ActionResult AddImage( HttpPostedFileBase postedFile )
+		{
+			string columnName = Request.Form[ Request.Form.AllKeys[ 0 ] ].ToString();
+			int ProductID = Convert.ToInt32( Request.Form[ Request.Form.AllKeys[ 1 ] ] );
+			byte[] bytes = new byte[ 1000 ];
+			if( ModelState.IsValid )
+			{
+
+				using( BinaryReader br = new BinaryReader( postedFile.InputStream ) )
+				{
+					bytes = br.ReadBytes( postedFile.ContentLength );
+				}
+
+			}
+
+
+			db.AddImage1( bytes, ProductID, columnName );
+
 
 			return View();
 		}
@@ -114,10 +136,68 @@ namespace untitled_Project.Controllers
 			{
 				db.productDetails.Add( productdetail );
 				db.SaveChanges();
-				return RedirectToAction( "Index" );
+				return RedirectToAction( "AddNewImage" );
 			}
 
 			return View( productdetail );
+		}
+
+
+		public ActionResult AddNewImage()
+		{
+			productImage ProductImage = new productImage();
+			var ID = db.GetNewProductID().ToList();
+
+
+			if( db.GetMainImage().ToList<productImage>().Find( x => x.pID == ID[ 0 ] ) != null )
+			{
+				ProductImage = db.GetMainImage().ToList<productImage>().Find( x => x.pID == ID[ 0 ] );
+
+			}
+
+			ViewBag.id = ID[ 0 ];
+
+			return View( ProductImage );
+
+		}
+
+		[HttpPost]
+		public ActionResult AddNewImage( HttpPostedFileBase postedFile )
+		{
+			string columnName = Request.Form[ Request.Form.AllKeys[ 0 ] ].ToString();
+			int ProductID = Convert.ToInt32( Request.Form[ Request.Form.AllKeys[ 1 ] ] );
+			byte[] bytes = new byte[ 1000 ];
+			if( ModelState.IsValid )
+			{
+
+				using( BinaryReader br = new BinaryReader( postedFile.InputStream ) )
+				{
+					bytes = br.ReadBytes( postedFile.ContentLength );
+				}
+
+			}
+
+			if( columnName == "mainImg" )
+				db.AddNewImage( bytes, ProductID, columnName );
+			else
+				db.AddImage1( bytes, ProductID, columnName );
+
+			productImage ProductImage = new productImage();
+			var ID = db.GetNewProductID().ToList();
+
+
+			if( db.GetMainImage().ToList<productImage>().Find( x => x.pID == ID[ 0 ] ) != null )
+			{
+				ProductImage = db.GetMainImage().ToList<productImage>().Find( x => x.pID == ID[ 0 ] );
+
+			}
+
+			ViewBag.id = ID[ 0 ];
+
+			return View( ProductImage );
+
+
+		
 		}
 
 		//

@@ -48,11 +48,22 @@ warning 6002: The table/view 'master.dbo.productImages' does not have a primary 
           <Property Name="img4" Type="varbinary(max)" />
           <Property Name="img5" Type="varbinary(max)" />
         </EntityType>
+        <Function Name="AddImage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="data" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="columnName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="AddNewImage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="data" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="columnName" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="CredentialCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserName" Type="varchar" Mode="In" />
           <Parameter Name="Password" Type="varchar" Mode="In" />
         </Function>
         <Function Name="GetMainImages" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetNewProductID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="ValidateLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserName" Type="varchar" Mode="In" />
           <Parameter Name="Password" Type="varchar" Mode="In" />
@@ -130,6 +141,22 @@ FROM [dbo].[productImages] AS [productImages]</DefiningQuery>
             <Parameter Name="UserName" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="AddImage">
+            <Parameter Name="data" Mode="In" Type="Binary" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="columnName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddImage1">
+            <Parameter Name="data" Mode="In" Type="Binary" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="columnName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetNewProductID" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="AddNewImage">
+            <Parameter Name="data" Mode="In" Type="Binary" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="columnName" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="GetMainImages_Result">
           <Property Type="Int32" Name="pID" Nullable="false" />
@@ -193,6 +220,10 @@ FROM [dbo].[productImages] AS [productImages]</DefiningQuery>
           <FunctionImportMapping FunctionImportName="CredentialCheck" FunctionName="masterModel.Store.CredentialCheck" />
           <FunctionImportMapping FunctionImportName="GetMainImage" FunctionName="masterModel.Store.GetMainImages" />
           <FunctionImportMapping FunctionImportName="ValidateLogin" FunctionName="masterModel.Store.ValidateLogin" />
+          <FunctionImportMapping FunctionImportName="AddImage" FunctionName="masterModel.Store.AddImage" />
+          <FunctionImportMapping FunctionImportName="AddImage1" FunctionName="masterModel.Store.AddImage" />
+          <FunctionImportMapping FunctionImportName="GetNewProductID" FunctionName="masterModel.Store.GetNewProductID" />
+          <FunctionImportMapping FunctionImportName="AddNewImage" FunctionName="masterModel.Store.AddNewImage" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

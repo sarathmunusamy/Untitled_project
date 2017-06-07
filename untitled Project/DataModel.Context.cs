@@ -67,5 +67,61 @@ namespace untitled_Project
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("ValidateLogin", userNameParameter, passwordParameter);
         }
+    
+        public virtual int AddImage(byte[] data, Nullable<int> id, string columnName)
+        {
+            var dataParameter = data != null ?
+                new ObjectParameter("data", data) :
+                new ObjectParameter("data", typeof(byte[]));
+    
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var columnNameParameter = columnName != null ?
+                new ObjectParameter("columnName", columnName) :
+                new ObjectParameter("columnName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddImage", dataParameter, idParameter, columnNameParameter);
+        }
+    
+        public virtual int AddImage1(byte[] data, Nullable<int> id, string columnName)
+        {
+            var dataParameter = data != null ?
+                new ObjectParameter("data", data) :
+                new ObjectParameter("data", typeof(byte[]));
+    
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var columnNameParameter = columnName != null ?
+                new ObjectParameter("columnName", columnName) :
+                new ObjectParameter("columnName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddImage1", dataParameter, idParameter, columnNameParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> GetNewProductID()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("GetNewProductID");
+        }
+    
+        public virtual int AddNewImage(byte[] data, Nullable<int> id, string columnName)
+        {
+            var dataParameter = data != null ?
+                new ObjectParameter("data", data) :
+                new ObjectParameter("data", typeof(byte[]));
+    
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var columnNameParameter = columnName != null ?
+                new ObjectParameter("columnName", columnName) :
+                new ObjectParameter("columnName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddNewImage", dataParameter, idParameter, columnNameParameter);
+        }
     }
 }

@@ -392,6 +392,7 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\AdminDetails.cshtml" />
     <Content Include="Views\Admin\EditImage.cshtml" />
+    <Content Include="Views\Admin\AddNewImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
